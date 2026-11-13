@@ -1,0 +1,9 @@
+const SIM={};
+SIM[4]=function(el){const a=['Open PuTTYgen','Click Load','Set filter to All Files','Select cloud-messenger-key.pem','Click Open','Click Save private key','Save as cloud-messenger-key.ppk'];let i=0;
+ function draw(){const done=i>=a.length;el.innerHTML='<div class="win"><h4>PuTTY Key Generator (simulated)</h4><div class="body"><p>'+(i>0?'Key loaded: '+(i>=5?'<span class="ok">imported OK</span>':'pending'):'No key loaded')+'</p>'+
+ (done?'<p class="ok">Private Key Successfully Converted!</p><pre>Downloads/\n  cloud-messenger-key.pem\n  cloud-messenger-key.ppk</pre>':'<button class="pri" id="go">'+(i+1)+'. '+a[i]+'</button>')+'</div></div><p>Local conversion on your Windows PC. Never upload real keys.</p>';
+ const b=el.querySelector('#go');if(b)b.onclick=()=>{i++;draw()}}draw()};
+SIM[5]=function(el){let f='';el.innerHTML='<div class="win"><h4>PuTTY Configuration (simulated)</h4><div class="body"><label>Host Name</label><input id="h" value="ec2-user@203.0.113.10"><label>Port</label><input id="p" value="22"><p>Connection type: SSH</p><p>Connection &gt; SSH &gt; Auth &gt; Credentials: <button id="f">Browse…</button> <code id="fp">(none)</code></p><label>Saved session</label><input id="s" value="Cloud-Messenger-Amazon-Linux"><p><button id="sv">Save</button> <button class="pri" id="op">Open</button></p><p id="m"></p></div></div>';
+ const q=x=>el.querySelector(x),m=q('#m');q('#f').onclick=()=>{f='C:\\Users\\you\\Downloads\\cloud-messenger-key.ppk';q('#fp').textContent=f};
+ q('#sv').onclick=()=>m.textContent='Session saved (in memory only).';
+ q('#op').onclick=()=>{m.innerHTML=!f?'<span class="bad">Choose a .ppk file first.</span>':q('#p').value!=='22'?'<span class="bad">Network error: Connection timed out (port is not 22).</span>':'<span class="ok">Ready — go to the next step.</span>'}};
